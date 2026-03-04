@@ -1,0 +1,26 @@
+[{
+    "id": 0,
+    "img": "../resources_refugio/img/refugio-frey/refugio-frey-1.jpg",
+    "img2": "../resources_refugio/img/refugio-frey/refugio-frey-2.jpg",
+    "img3": "../resources_refugio/img/refugio-frey/refugio-frey-3.jpg"
+    
+},
+{
+    "id": 1,
+    "img": "../resources_refugio/img/refugio-laguna-negra/laguna-negra-refugio-1.jpg",
+    "img2": "../resources_refugio/img/refugio-laguna-negra/laguna-negra-refugio-2.jpg",
+    "img3": "../resources_refugio/img/refugio-laguna-negra/laguna-negra-refugio-3.jpg"
+},
+{
+    "id": 2,
+    "img": "../resources_refugio/img/refugio-lopez/refugio-lopez-1.jpeg",
+    "img2": "../resources_refugio/img/refugio-lopez/refugio-lopez-2.jpeg",
+    "img3": "../resources_refugio/img/refugio-lopez/refugio-lopez-3.jpg"
+},
+{
+    "id": 3,
+    "img": "../resources_refugio/img/refugio-jakob/refugio-jakob-1.jpg",
+    "img2": "../resources_refugio/img/refugio-jakob/refugio-jakob-2.jpg",
+    "img3": "../resources_refugio/img/refugio-jakob/refugio-jakob-3.jpg"
+}
+]

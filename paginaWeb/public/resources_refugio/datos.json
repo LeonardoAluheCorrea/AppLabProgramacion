@@ -1,0 +1,35 @@
+[
+    {
+        "id":"0",
+        "nombre": "Refugio Frey",
+        "descripcion": "El refugio Emilio Frey está ubicado al pie de la aguja Frey, rodeado de torres y agujas rocosas y a orillas de la laguna Toncek de verdes y frías aguas, a 1700 metros sobre el nivel del mar. ",
+        "altura": "1700msnm",
+        "dificultad": "alta",
+        "url": "refugios/Refugio-Frey.jpg"
+    },
+    {
+        "id":"1",
+        "nombre": "Refugio Laguna Negra",
+        "descripcion": "El Refugio Italia Manfredo Segre, también conocido como Refugio Laguna Negra, se encuentra ubicado en el Cerro Negro, muy cerca de Colonia Suiza. ",
+        "altura": "1620msnm",
+        "dificultad": "alta",
+        "url": "refugios/Refugio-Laguna-Negra.jpg"
+    },
+    {
+        "id":"2",
+        "nombre": "Refugio Lopez",
+        "descripcion": "Cerca de la cima del cerro se encuentra el refugio López, un refugio de montaña ubicado a 1620 metros sobre el nivel del mar. Cuenta con capacidad para albergar a 100 personas y es el más grande y confortable de los refugios de montaña. Además, es el refugio de más fácil acceso.",
+        "altura": "2060msnm",
+        "dificultad": "alta",
+        "url": "refugios/Refugio-Lopez.jpg"
+    },
+    {
+        "id":"3",
+        "nombre": "Refugio Jakob",
+        "descripcion": "El refugio Gral San Martín, más conocido como Refugio Jakob debido al lago que está a sus pies, está ubicado a 1600 metros sobre el nivel del mar.",
+        "altura": "1600msnm",
+        "dificultad": "alta",
+        "url": "refugios/Refugio-Jakob.jpg"
+    }
+
+]

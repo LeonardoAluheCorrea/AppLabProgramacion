@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/slide.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+<body>
+    <header> 
+
+    </header>
+    <div class="slide">
+        <ul>
+            <li id="slide-img1"> <img src= <%= img1%> alt=""> </li>
+            <li id="slide-img2"> <img src= <%= img2%> alt=""> </li>
+            <li id="slide-img3"> <img src= <%= img3%> alt=""></li>
+        </ul>
+        
+
+        
+
+    </div>
+    
+
+    <br>
+    <br>
+    <br>
+    <table class="table-person">
+        <h3>PERSONAS QUE SUBIERON AL REFUGIO</h3>
+        <thead>
+            <th class="col_nombre">Nombre</th>
+            <th class="col_apellido">Apellido</th>
+            <th class="col_email">Email</th>
+            <th class="col_tel">Telefono</th>
+        </thead>
+        <tr>
+            <td>leonel</th>
+            <td>llancaqueo</th>
+            <td>leo@gmail.com</th>
+            <td>2944653214</th>
+        </tr>
+       
+    </table>
+   
+    <form class="form-person"  method="post" action="/refugio/"<%= idRefugio%> >
+
+        <h2>SUBISTE EL REFUGIO?</h2>
+        <h3>Registrarme</h3>
+        <label for="">Nombre</label>
+        <input type="text" name="input_nombre" id="post_nombre">
+        <br>
+        <label for="">Apellido</label>
+        <input type="text" name="input_apellido" id="post_apellido">
+        <br>
+        <label for="">Email</label>
+        <input type="text" name="input_email" id="post_email">
+        <br>
+        <label for="">Telefono</label>
+        <input type="text" name="input_telefono" id="post_input">
+        
+        <br>
+        <button>
+            <input type="submit" value="Enviar"></input>
+        </button>
+        
+
+    </form> 
+       
+    
+    
+    
+    
+    <footer>
+        <nav class="nav-footer">
+
+        </nav>
+
+    </footer>
+
+    
+    
+    <!-- <script src="refugio/cargarPagRefugio.js"></script> -->
+    <script src="../cargarNav.js"></script>
+    <script src="../cargarFooter.js"></script>
+    <!--<script src="form_person.js"></script> --> 
+
+
+</body>
+</html>
