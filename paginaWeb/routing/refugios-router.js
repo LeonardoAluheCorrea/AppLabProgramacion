@@ -1,18 +1,16 @@
-
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 
-// --- DATABASE REMOVED ---
-// const database = require('../public/iniciarDB'); 
-
-// 1. MOCK DATA (This replaces your Database for all routes)
-const mockRefugios = Array.from({ length: 50 }, (_, i) => ({
+// Mock data 
+let mockRefugios = Array.from({ length: 50 }, (_, i) => ({
     id: (i + 1).toString(),
-    nombre: `Refugio Lab ${i + 1}`,
-    descripcion: `Este es el refugio número ${i + 1}. Es un espacio dedicado al cuidado y protección, parte del proyecto AppLab Programación.`,
-    contacto: `contacto${i + 1}@applab.com`,
+    nombre: `Refugio de Montaña ${i + 1}`,
+    descripcion: `Refugio ubicado a ${2000 + i * 50}m de altitud. Ideal para excursiones largas y ascensos a cumbres. Cuenta con camas, cocina compartida y vistas panorámicas.`,
+    contacto: `contacto${i + 1}@refugios.com`,
+    altitud: `${2000 + i * 50} msnm`,
+    capacidad: `${10 + (i % 20)} personas`,
     img: "https://via.placeholder.com/150",
     img2: "https://via.placeholder.com/150",
     img3: "https://via.placeholder.com/150"
@@ -25,11 +23,12 @@ router.use('resources-refugio', express.static('public/resources-refugio'));
 router.use('css', express.static('public/css'));
 router.use(express.json());
 
-// --- API FOR MOBILE APP (Infinite Scroll) ---
+// ─── API FOR MOBILE APP ──────────────────────────────────────────────────────
+
+// GET lista (infinite scroll)
 router.get('/api/refugios', (req, res) => {
-    console.log("--- Mobile app requesting Mock Data ---");
     const page = parseInt(req.query.page) || 1;
-    const limit = 10; 
+    const limit = parseInt(req.query.limit) || 10;
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
 
@@ -37,10 +36,43 @@ router.get('/api/refugios', (req, res) => {
     res.json(results);
 });
 
-// --- UPDATED WEB ROUTES (Now using Mock Data) ---
+// GET refugio por ID
+router.get('/api/refugios/:id', (req, res) => {
+    const refugio = mockRefugios.find(r => r.id === req.params.id);
+    if (!refugio) {
+        return res.status(404).json({ error: 'Refugio no encontrado' });
+    }
+    res.json(refugio);
+});
+
+// POST create refugio
+router.post('/api/refugios', (req, res) => {
+    const { nombre, descripcion, contacto, altitud, capacidad } = req.body;
+
+    if (!nombre || !descripcion || !contacto) {
+        return res.status(400).json({ error: 'Nombre, descripción y contacto son obligatorios' });
+    }
+
+    const newRefugio = {
+        id: (mockRefugios.length + 1).toString(),
+        nombre,
+        descripcion,
+        contacto,
+        altitud: altitud || 'No especificada',
+        capacidad: capacidad || 'No especificada',
+        img: "https://via.placeholder.com/150",
+        img2: "https://via.placeholder.com/150",
+        img3: "https://via.placeholder.com/150"
+    };
+
+    mockRefugios.push(newRefugio);
+    console.log(`Nuevo refugio creado: ${newRefugio.nombre}`);
+    res.status(201).json(newRefugio);
+});
+
+// ─── WEB ROUTES ──────────────────────────────────────────────────────────────
 
 router.get("/info-refugios", (req, res) => {
-    // Returns the whole list to the web page
     return res.status(200).json(mockRefugios);
 });
 
@@ -49,21 +81,15 @@ router.get('/', (req, res) => {
 });
 
 router.get('/info_footer', (req, res) => {
-    // Fixed the hardcoded path to be relative
     const footerPath = path.join(__dirname, '../public/pagina-refugio/info_footer.json');
     fs.readFile(footerPath, 'utf8', (err, data) => {
-        if (err) {
-            console.log("Error reading footer JSON");
-            return res.status(500).send("Error");
-        }
+        if (err) return res.status(500).send("Error");
         res.send(data);
     });
 });
 
 router.get('/refugio/:id', (req, res) => {
-    // Find the refugio in our fake array instead of the DB
     const refugio = mockRefugios.find(r => r.id === req.params.id);
-    
     if (refugio) {
         res.render('refugio', {
             img1: refugio.img,
@@ -77,8 +103,7 @@ router.get('/refugio/:id', (req, res) => {
 });
 
 router.post('/refugio/:id', (req, res) => {
-    // Simulates a successful save
-    console.log("Mock: Data received from form:", req.body);
+    console.log("Web form data:", req.body);
     res.render('refugio', { id: req.params.id });
 });
 
