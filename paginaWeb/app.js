@@ -1,38 +1,20 @@
+const express = require('express'); 
+const cors = require('cors');       
+const path = require('path');
+const fs = require('fs');
 
+const app = express();              
+const port = '3000';
 
-const express= require('express');
-
-const app = express();
-
-const port= '3000';
-
-  //routing
-const refugios_router= require('./routing/refugios-router')
-
-const path= require('path')
-
-
-
-//
-const fs= require('fs');
-
+app.use(cors());                    
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.set('view engine', 'ejs');
 
-app.set('view engine','ejs');
-
-
-app.use(express.urlencoded({extended: true}))
-
-//routing
-
-app.use('/', refugios_router)
+// Routing
+const refugios_router = require('./routing/refugios-router');
+app.use('/', refugios_router);
 
 app.listen(port, function () {
-    console.log("server on port " + port);
+    console.log("Server running on port " + port);
 });
-
-
-
-
-
-
