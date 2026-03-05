@@ -1,6 +1,6 @@
 import { API_BASE_URL, PAGE_SIZE } from '../Constants/constants';
 
-// ─── GET paginated list (for infinite scroll) ────────────────────────────────
+// ─── GET lista (infinite scroll) ────────────────────────────────
 export const getRefugios = async (page = 1) => {
   const response = await fetch(
     `${API_BASE_URL}/api/refugios?page=${page}&limit=${PAGE_SIZE}`
@@ -9,14 +9,14 @@ export const getRefugios = async (page = 1) => {
   return response.json();
 };
 
-// ─── GET single refugio by ID ────────────────────────────────────────────────
+// ─── GET refugio por ID ────────────────────────────────────────────────
 export const getRefugioById = async (id) => {
   const response = await fetch(`${API_BASE_URL}/api/refugios/${id}`);
   if (!response.ok) throw new Error('Refugio no encontrado');
   return response.json();
 };
 
-// ─── POST create new refugio ─────────────────────────────────────────────────
+// ─── POST create refugio ─────────────────────────────────────────────────
 export const createRefugio = async (data) => {
   const response = await fetch(`${API_BASE_URL}/api/refugios`, {
     method: 'POST',

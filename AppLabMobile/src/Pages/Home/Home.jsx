@@ -18,7 +18,6 @@ export default function Home() {
       try {
         const data = await getRefugios(1);
         setFeatured(data.slice(0, 3));
-        // We load page 5 to know there are at least 50 items
         setTotalRefugios(50);
       } catch (e) {
         console.error(e);
@@ -91,7 +90,6 @@ export default function Home() {
           </TouchableOpacity>
         </View>
 
-        {/* ── FEATURED ───────────────────────────────────────────── */}
         <Text style={[styles.sectionTitle, { marginTop: 8 }]}>Destacados</Text>
         {loading ? (
           <ActivityIndicator color="#2D6A4F" style={{ marginTop: 20 }} />
