@@ -66,7 +66,7 @@ export default function Detail() {
       <StatusBar barStyle="light-content" backgroundColor="#2D6A4F" />
       <ScrollView contentContainerStyle={styles.container}>
 
-        {/* ── HERO IMAGE ─────────────────────────────────────────── */}
+        {/* ── IMAGE ─────────────────────────────────────────── */}
         <Image
           source={{ uri: refugio.img || 'https://via.placeholder.com/400x200' }}
           style={styles.heroImage}

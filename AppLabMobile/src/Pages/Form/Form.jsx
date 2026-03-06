@@ -63,7 +63,7 @@ export default function Form() {
       );
       setForm({ nombre: '', descripcion: '', contacto: '', altitud: '', capacidad: '' });
     } catch (e) {
-      Alert.alert('Error', 'No se pudo crear el refugio. Verificá que el servidor esté corriendo.');
+      Alert.alert('Error', 'No se pudo crear el refugio.');
     } finally {
       setLoading(false);
     }

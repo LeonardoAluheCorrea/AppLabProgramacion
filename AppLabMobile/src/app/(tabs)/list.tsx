@@ -1,2 +1,2 @@
-import List from '../../src/Pages/List/List';
+import List from '../../Pages/List/List';
 export default List;

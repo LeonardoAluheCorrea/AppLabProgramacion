@@ -1,2 +1,2 @@
-import Form from '../../src/Pages/Form/Form';
+import Form from '../../Pages/Form/Form';
 export default Form;
