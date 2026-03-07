@@ -3,7 +3,7 @@ const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 
-const BASE_IMG_URL = 'http://192.168.1.132:3000/resources_refugio/img';
+const BASE_IMG_URL = 'http://192.168.1.136:3000/resources_refugio/img';
 
 const realRefugios = [
     {
