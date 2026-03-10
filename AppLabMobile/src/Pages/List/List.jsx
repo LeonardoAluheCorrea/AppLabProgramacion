@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   FlatList, View, Text, ActivityIndicator,
   SafeAreaView, StatusBar, TextInput,
@@ -7,6 +7,9 @@ import { useRouter } from 'expo-router';
 import RefugioCard from '../../Components/RefugioCard/RefugioCard';
 import { getRefugios } from '../../Services/refugios.service';
 import styles from './ListStyles';
+import { PAGE_SIZE } from '../../Constants/constants';
+import { useFocusEffect } from 'expo-router';
+import { useCallback } from 'react';
 
 export default function List() {
   const router = useRouter();
@@ -15,26 +18,41 @@ export default function List() {
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [search, setSearch] = useState('');
+  const isLoadingRef = useRef(false);
+  const pageRef = useRef(1);
 
   const loadMore = async () => {
-    if (loading || !hasMore) return;
+    if (isLoadingRef.current || !hasMore) return;
+    isLoadingRef.current = true;
     setLoading(true);
     try {
-      const newItems = await getRefugios(page);
-      if (newItems.length === 0) {
-        setHasMore(false);
-      } else {
+      const newItems = await getRefugios(pageRef.current);  // ← usa ref
+      if (newItems.length > 0) {
         setData(prev => [...prev, ...newItems]);
-        setPage(prev => prev + 1);
+        pageRef.current = pageRef.current + 1;  // ← actualiza ref
+        setPage(pageRef.current);               // ← actualiza estado para UI
+      }
+      if (newItems.length < PAGE_SIZE) {
+        setHasMore(false);
       }
     } catch (e) {
       console.error('Error loading refugios:', e);
     } finally {
+      isLoadingRef.current = false;
       setLoading(false);
     }
   };
 
-  useEffect(() => { loadMore(); }, []);
+  useFocusEffect(
+  useCallback(() => {
+    setData([]);
+    setPage(1);
+    pageRef.current = 1;       // ← resetea el ref
+    setHasMore(true);
+    isLoadingRef.current = false;
+    loadMore();                // ← sin argumento ahora
+  }, [])
+);
 
   const filtered = search.trim()
     ? data.filter(r =>

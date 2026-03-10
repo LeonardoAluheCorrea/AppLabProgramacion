@@ -3,7 +3,7 @@ const router = express.Router();
 const fs = require('fs');
 const path = require('path');
 
-const BASE_IMG_URL = 'http://192.168.1.136:3000/resources_refugio/img';
+const BASE_IMG_URL = 'http://192.168.1.90:3000/resources_refugio/img';
 
 const realRefugios = [
     {
@@ -58,9 +58,9 @@ const mockRefugios = [
     ...Array.from({ length: 46 }, (_, i) => ({
         id: (i + 5).toString(),
         nombre: `Refugio de Montaña ${i + 5}`,
-        descripcion: `Refugio ubicado a ${2000 + i * 50}m de altitud. Ideal para excursiones largas y ascensos a cumbres. Cuenta con camas, cocina compartida y vistas panorámicas.`,
+        descripcion: `Refugio ubicado a ${2000 + i * 200}m de altitud. Ideal para excursiones largas y ascensos a cumbres. Cuenta con camas, cocina compartida y vistas panorámicas.`,
         contacto: `contacto${i + 5}@refugios.com`,
-        altitud: `${2000 + i * 50} msnm`,
+        altitud: `${2000 + i * 200} msnm`,
         capacidad: `${10 + (i % 20)} personas`,
         img: 'https://via.placeholder.com/400x200',
         img2: 'https://via.placeholder.com/400x200',
